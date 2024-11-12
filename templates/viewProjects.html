@@ -1,0 +1,154 @@
+<!-- view_project.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/viewProjects.css') }}">
+    <style>
+        /* viewProjects.css */
+
+/* General reset for box-sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Container for main content */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+/* Heading styling */
+h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+
+/* Button styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="my-4">Project Details</h2>
+        
+        <!-- Project details table -->
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Project ID</th>
+                    <td>12345</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>Project Name</th>
+                    <td>New Building Construction</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>Start Date</th>
+                    <td>2024-01-01</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>End Date</th>
+                    <td>2025-01-01</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>Budget</th>
+                    <td>$5,000,000</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>Client ID</th>
+                    <td>98765</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>State</th>
+                    <td>California</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>District</th>
+                    <td>Los Angeles</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>City/Town</th>
+                    <td>Los Angeles</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>Pincode</th>
+                    <td>90001</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>In Progress</td> <!-- Static example data -->
+                </tr>
+                <tr>
+                    <th>Details</th>
+                    <td>Construction of a new residential building in downtown.</td> <!-- Static example data -->
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Button to go back to previous page -->
+        <a href="/add_project" class="btn btn-secondary">Back to Add Project</a>
+    </div>
+</body>
+</html>

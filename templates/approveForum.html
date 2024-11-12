@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Approval Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/approveForum.css') }}">
+    <style>
+        /* Global styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        }
+
+        /* Container styling for consistent white background */
+        .container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 80vh;
+            animation: fadeIn 1s ease;
+            margin-top: 40%;
+        }
+
+        h2 {
+            color: #333;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for each project block */
+        .project {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-left: 10px;
+        }
+
+        .approval-checkbox {
+            accent-color: #28a745;
+            transform: scale(1.2);
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .approval-checkbox:hover {
+            transform: scale(1.3);
+        }
+
+        .project-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .submit-btn, .back-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .back-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .message {
+            display: none;
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .message.show {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Pending Project Approvals</h2>
+    <div id="project-list">
+        <!-- Project Block 1 -->
+        <div class="project">
+            <input type="checkbox" class="approval-checkbox" data-project-id="1">
+            <div class="project-details">
+                <p><strong>Department Representative ID:</strong> 992310</p>
+                <p><strong>Project ID:</strong> 12345</p>
+                <p><strong>Contractor ID:</strong> C56789</p>
+                <p><strong>Project Agenda:</strong> New Building Construction</p>
+            </div>
+        </div>
+        
+        <!-- Project Block 2 -->
+        <div class="project">
+            <input type="checkbox" class="approval-checkbox" data-project-id="2">
+            <div class="project-details">
+                <p><strong>Department Representative ID:</strong> 23456</p>
+                <p><strong>Project ID:</strong> 2</p>
+                <p><strong>Contractor ID:</strong> C67890</p>
+                <p><strong>Project Agenda:</strong> Build a municipal building</p>
+            </div>
+        </div>
+        
+        <!-- Project Block 3 -->
+        <div class="project">
+            <input type="checkbox" class="approval-checkbox" data-project-id="3">
+            <div class="project-details">
+                <p><strong>Department Representative ID:</strong> 34567</p>
+                <p><strong>Project ID:</strong> 3</p>
+                <p><strong>Contractor ID:</strong> C78901</p>
+                <p><strong>Project Agenda:</strong> Create a smart city</p>
+            </div>
+        </div>
+    </div>
+    
+    <button id="submitBtn" class="submit-btn" disabled>Submit Approved Projects</button>
+    <div id="successMessage" class="message">Your project(s) have been approved successfully!</div>
+
+    <!-- Back to Admin Dashboard Button -->
+    <a href="{{ url_for('admin_actions') }}" class="back-btn">Back to Admin Dashboard</a>
+</div>
+
+<script>
+    const submitBtn = document.getElementById("submitBtn");
+    const checkboxes = document.querySelectorAll(".approval-checkbox");
+    const successMessage = document.getElementById("successMessage");
+
+    // Enable the submit button if any checkbox is checked
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", () => {
+            submitBtn.disabled = ![...checkboxes].some(cb => cb.checked);
+        });
+    });
+
+    // Remove approved projects on submit and show success message
+    submitBtn.addEventListener("click", () => {
+        let approved = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const projectElement = checkbox.closest(".project");
+                projectElement.remove();
+                approved = true;
+            }
+        });
+
+        if (approved) {
+            // Show success message with fade-in/out effect
+            successMessage.classList.add("show");
+            setTimeout(() => {
+                successMessage.classList.remove("show");
+            }, 3000); // Hide after 3 seconds
+        }
+
+        submitBtn.disabled = true; // Disable button if no projects left to approve
+    });
+</script>
+
+</body>
+</html>

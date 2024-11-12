@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cAction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/drProject.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/drForum.css') }}">
+    <style>
+        /* Interactive button styles */
+        .button-container {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -20px; /* Moves buttons slightly closer to the heading */
+            border-radius: 8px; /* Rounded corners */
+            padding: 30px; /* Inner padding */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Enhanced shadow effect */
+            width: 350px;
+            height: 225px;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 20px 20px;
+            background-color: #5b8cfa;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px; /* Rounded corners */
+            transition: background-color 0.3s, transform 0.3s;
+            width: 200px;
+            text-align: center;
+        }
+
+        .button-container a:hover {
+            background-color: #4a7ae0;
+            transform: translateY(-2px);
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 600px) {
+            .content h2 {
+                font-size: 1.6rem;
+            }
+
+            .button-container a {
+                width: 180px;
+                font-size: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>QUIK</h1>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+        <h2>Contractor Actions</h2>
+
+        <!-- Buttons for actions -->
+        <div class="button-container">
+            <a href="{{ url_for('add_project_estimation') }}" class="btn btn-primary">Add Project Estimation</a>
+            <a href="{{ url_for('update_project_status') }}" class="btn btn-info">Update Project Status</a>
+            <a href="#" id="requestForumBtn">Request For Forum</a>
+        </div>
+    </div>
+
+    <!-- Forum Modal Overlay -->
+    <div id="forumModalOverlay" class="modal-overlay">
+        <div class="forum modal-content">
+            <span class="close-btn" id="closeForumModal">&times;</span>
+            <h2>Forum Request Form</h2>
+            <form id="forumForm">
+                <label for="departmentId">Department Representative ID:</label>
+                <input type="text" id="departmentId" name="departmentId" required>
+
+                <label for="projectId">Project ID:</label>
+                <input type="text" id="projectId" name="projectId" required>
+
+                <label for="contractorId">Contractor ID:</label>
+                <input type="text" id="contractorId" name="contractorId" required>
+
+                <label for="projectAgenda">Project Agenda:</label>
+                <textarea id="projectAgenda" name="projectAgenda" rows="4" required></textarea>
+
+                <button type="submit">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script src="{{ url_for('static', filename='css/forumModal.js') }}"></script>
+
+</html>

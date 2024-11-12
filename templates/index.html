@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIK Dashboard</title>
+    <style>
+        /* General body styles */
+        body {
+            background: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation bar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 15px 20px;
+            color: white;
+        }
+
+        .navbar h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-buttons a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #4a7ae0;
+        }
+
+        /* Center the container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+        }
+
+        /* Form styles */
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center; /* Center elements inside the form */
+        }
+
+        /* Login header styling */
+        .login h2 {
+            margin-bottom: 20px; /* Adjust space between Login and form */
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        /* Style the input fields and select dropdown */
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%; /* Change width to 100% for consistency */
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            box-sizing: border-box; /* Ensures padding and border are included in the width */
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #5b8cfa;
+            outline: none;
+        }
+
+        /* Button styles */
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #5b8cfa;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4a7ae0;
+        }
+
+        /* Placeholder styles */
+        input::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 400px) {
+            form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>QUIK</h1>
+        <div class="nav-buttons">
+            <a href="#">Home</a> |
+            <a href="#">About</a>
+        </div>
+    </div>
+    
+    
+
+    <div class="container">
+        <form method="post">
+            <div class="login">
+                <h2>LOGIN</h2>
+            </div>
+            <input type="text" id="userId" name="userId" placeholder="User ID" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <select id="userRole" name="userRole" required>
+                <option value="" disabled selected>Please Select User Role</option>
+                <option value="Department Representative">Department Representative</option>
+                <option value="Contractor">Contractor</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

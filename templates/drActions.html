@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dAction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/drProject.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/drForum.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>QUIK</h1>
+        <p style="text-decoration: underline;">Home</p>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+        <h2>Departmental Representative Action</h2>
+
+        <!-- Buttons for actions -->
+        <div class="button-container">
+            <a href="#" id="addProjectBtn">Add Project</a>
+            <a href="#" id="requestForumBtn">Request For Forum</a>
+            <a href="{{ url_for('view_projects') }}">View Project</a> <!-- Updated link -->
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>Project Details Form</h2>
+            <form action="/add_project" method="POST" enctype="multipart/form-data">
+                <!-- Project Information -->
+                <label for="projectId"> ID:</label>
+                <input type="text" id="projectId" name="projectId" required>
+            
+                <label for="projectName"> Name:</label>
+                <input type="text" id="projectName" name="projectName" >
+            
+                <label for="projectDate"> Start Date:</label>
+                <input type="date" id="projectDate" name="projectDate" >
+            
+                <label for="completionDate">Expected Completion Date:</label>
+                <input type="date" id="completionDate" name="completionDate" >
+            
+                <label for="projectAmount"> Budget (in INR):</label>
+                <input type="number" id="projectAmount" name="projectAmount" min="0" step="0.01" >
+            
+                <!-- Contractor Information -->
+                <label for="contractorId">Contractor ID:</label>
+                <input type="text" id="contractorId" name="contractorId" >
+            
+                <!-- Project Location -->
+                <label for="projectLocation"> State:</label>
+                <input type="text" id="projectLocation" name="projectLocation" >
+            
+                <label for="projectDistrict"> District:</label>
+                <input type="text" id="projectDistrict" name="projectDistrict" >
+            
+                <label for="projectCity"> City/Town:</label>
+                <input type="text" id="projectCity" name="projectCity" >
+            
+                <label for="projectPincode"> Pincode:</label>
+                <input type="text" id="projectPincode" name="projectPincode" pattern="[0-9]{6}" >
+            
+                <label for="projectStatus"> Status:</label>
+                <select id="projectStatus" name="projectStatus" >
+                    <option value="Select" disabled selected>Select</option>
+                    <option value="Stage 1">Stage 1</option>
+                    <option value="Stage 2">Stage 2</option>
+                    <option value="Stage 3">Stage 3</option>
+                    <option value="Stage 4">Stage 4</option>
+                    <option value="Stage 5">Stage 5</option>
+                </select>
+            
+                <!-- Project Description -->
+                <label for="projectDetail"> Details:</label>
+                <textarea id="projectDetail" name="projectDetail" rows="4" ></textarea>
+            
+                <!-- Submit Button -->
+                <button type="submit">Submit Project</button>
+            </form>
+            
+        </div>
+    </div>
+
+    <!-- Forum Modal Overlay -->
+    <div id="forumModalOverlay" class="modal-overlay">
+        <div class="forum modal-content">
+            <span class="close-btn" id="closeForumModal">&times;</span>
+            <h2>Forum Request Form</h2>
+            <form id="forumForm">
+                <label for="departmentId">Department Representative ID:</label>
+                <input type="text" id="departmentId" name="departmentId" required>
+
+                <label for="projectId">Project ID:</label>
+                <input type="text" id="projectId" name="projectId" required>
+
+                <label for="contractorId">Contractor ID:</label>
+                <input type="text" id="contractorId" name="contractorId" required>
+
+                <label for="projectAgenda">Project Agenda:</label>
+                <textarea id="projectAgenda" name="projectAgenda" rows="4" required></textarea>
+
+                <button type="submit">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <center> <i>&#10004;</i> Project Submitted Successfully! </center>
+    </div>
+</body>
+<script src="{{ url_for('static', filename='css/prModal.js') }}"></script>
+<script src="{{ url_for('static', filename='css/forumModal.js') }}"></script>
+
+</html>
+    
+
